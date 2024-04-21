@@ -1,0 +1,26 @@
+This repo is for demonstrating a bun error. My output to running 'bun bundling.js' in this repo is below
+
+
+
+This file is to demonstrate issues with sourcemap functionality in Bun.build
+Current bun version:  1.1.3
+
+Issue one - naming overide
+In the following file, the import's name is not hashed as was specified in Bun.build
+____________________________________________________
+
+//# debugId=2B7BEB0A06C3F1A064756e2164756e21
+// in1/danc_hi_q.gif
+var danc_hi_q_default = "in1/danc_hi_q.gif";
+
+// in1/assetlink.js
+var assetlink_default = danc_hi_q_default;
+export {
+  assetlink_default as default
+};
+
+//# debugId=977DE0C0D402E0EE64756e2164756e21
+___________________________________________________
+Issue two - segfault on jpegs (only jpegs strangely)
+we are about to segfault...
+Segmentation fault (core dumped)
